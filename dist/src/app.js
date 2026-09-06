@@ -192,7 +192,7 @@ function SectionTitle(prefix, title) {
 }
 function HomePage(router) {
     const page = el('div');
-    const hero = el('section', ['sec', 'hero'], '', { style: `background:linear-gradient(rgba(8,23,38,.55),rgba(8,23,38,.72)),url(${IMAGES}hero.png) center/cover no-repeat` });
+    const hero = el('section', ['sec', 'hero'], '', { style: `background:linear-gradient(rgba(8,23,38,.55),rgba(8,23,38,.72)),url(${IMAGES}hero.png?auto=format&fit=crop&w=1800&q=80) center/cover no-repeat` });
     const heroInner = el('div', 'w');
     const heroBox = el('div', '', '', { style: 'maxWidth:640px' });
     heroBox.appendChild(el('p', 'sub', 'Cabinet d\u2019avocat \u2014 Droit des affaires', { style: 'color:#e7ecf1' }));
