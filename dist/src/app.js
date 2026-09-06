@@ -3,6 +3,9 @@ const PHONE = '+33 7 81 22 51 91';
 const EMAIL = 'mina.bibawi@bibawi-avocats.com';
 const ADDRESS = '54, rue Letort - 75018 Paris';
 const IMG = 'https://images.unsplash.com/';
+const ASSETS = 'BIBAWI_LAW_FIRM/dist/assets/';
+const IMAGES = `${ASSETS}images/`;
+const UPOLADS = `${ASSETS}uploads/`;
 const EXPERTISES = [
     {
         title: 'Baux commerciaux',
@@ -189,7 +192,7 @@ function SectionTitle(prefix, title) {
 }
 function HomePage(router) {
     const page = el('div');
-    const hero = el('section', ['sec', 'hero'], '', { style: `background:linear-gradient(rgba(8,23,38,.55),rgba(8,23,38,.72)),url(${IMG}photo-1589578527966-fdac0f44566c?auto=format&fit=crop&w=1800&q=80) center/cover no-repeat` });
+    const hero = el('section', ['sec', 'hero'], '', { style: `background:linear-gradient(rgba(8,23,38,.55),rgba(8,23,38,.72)),url(${IMAGES}hero.png) center/cover no-repeat` });
     const heroInner = el('div', 'w');
     const heroBox = el('div', '', '', { style: 'maxWidth:640px' });
     heroBox.appendChild(el('p', 'sub', 'Cabinet d\u2019avocat \u2014 Droit des affaires', { style: 'color:#e7ecf1' }));
