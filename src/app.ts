@@ -298,7 +298,7 @@ function HomePage(router: Router): HTMLElement {
   const aboutBtn = el('a', ['btn', 'btn-o'], 'En savoir plus', { href: '/about' });
   aboutBtn.addEventListener('click', e => { e.preventDefault(); router.navigate('about'); });
   aboutTxt.appendChild(aboutBtn);
-  const aboutImg = el('img', '', '', { src: `${IMG}photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80`, alt: 'Cabinet Mina Bibawi', style: 'borderRadius:var(--ra)' });
+  const aboutImg = el('img', '', '', { src: `${IMAGES}perso2.png?auto=format&fit=crop&w=900&q=80`, alt: 'Cabinet Mina Bibawi', style: 'borderRadius:var(--ra)' });
   aboutW.append(aboutTxt, aboutImg);
   about.appendChild(aboutW);
 
@@ -349,7 +349,7 @@ function AboutPage(): HTMLElement {
   txt.appendChild(el('p', 'txt', 'Titulaire d\u2019un Master II Professionnel en droit europ\u00e9en et international des affaires de l\u2019Universit\u00e9 Paris I Panth\u00e9on-Sorbonne, il a d\u00e9velopp\u00e9 tout au long de sa carri\u00e8re une pratique tourn\u00e9e vers les op\u00e9rations transfrontali\u00e8res, aux c\u00f4t\u00e9s de clients fran\u00e7ais et \u00e9trangers.'));
   txt.appendChild(el('p', 'txt', 'Il conseille et repr\u00e9sente ses clients en fran\u00e7ais, en anglais et en arabe, ce qui lui permet d\u2019accompagner des entrepreneurs et investisseurs issus d\u2019horizons vari\u00e9s, en France comme \u00e0 l\u2019international.'));
   txt.appendChild(el('p', 'txt', 'Son approche est celle d\u2019un conseil de proximit\u00e9 : comprendre les objectifs commerciaux du client, anticiper les risques juridiques et fiscaux, et structurer chaque op\u00e9ration avec rigueur, jusqu\u2019\u00e0 sa r\u00e9alisation.'));
-  const img = el('img', '', '', { src: `${IMG}photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80`, alt: 'Ma\u00eetre Mina Bibawi', style: 'borderRadius:var(--ra)' });
+  const img = el('img', '', '', { src: `${IMAGES}perso2.png?auto=format&fit=crop&w=900&q=80`, alt: 'Ma\u00eetre Mina Bibawi', style: 'borderRadius:var(--ra)' });
   w2.append(txt, img);
   s2.appendChild(w2);
   page.appendChild(s2);
@@ -377,7 +377,7 @@ function AboutPage(): HTMLElement {
 function ExpertisesPage(router: Router): HTMLElement {
   const page = el('div');
 
-  const hero = el('section', ['sec', 'hero', 'hero-flat'], '', { style: `background:linear-gradient(rgba(8,23,38,.6),rgba(8,23,38,.6)),url(${IMG}photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1800&q=80) center/cover no-repeat;min-height:360px` });
+  const hero = el('section', ['sec', 'hero', 'hero-flat'], '', { style: `background:linear-gradient(rgba(8,23,38,.6),rgba(8,23,38,.6)),url(${IMAGES}perso2.png?auto=format&fit=crop&w=1800&q=80) center/cover no-repeat;min-height:360px` });
   const heroInner = el('div', 'w');
   const heroBox = el('div', '', '', { style: 'max-width:720px' });
   heroBox.appendChild(el('p', 'sub', 'Expertises', { style: 'color:#fff' }));
