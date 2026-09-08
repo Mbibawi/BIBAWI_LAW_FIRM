@@ -193,7 +193,7 @@ function SectionTitle(prefix, title) {
 function HomePage(router) {
     const page = el('div');
     const hero = el('section', ['sec', 'hero'], '', {
-        style: `background-image: linear-gradient(rgba(7, 52, 61, 0.55), rgba(8, 23, 38, 0.72)), url('${IMAGES}hero.png')`
+        style: `background-image: linear-gradient(rgba(7, 52, 61, 0.55), rgba(8, 23, 38, 0.72)), url(${IMAGES}hero.png)`
     });
     const heroInner = el('div', 'w');
     const heroBox = el('div', '', '', { style: 'maxWidth:640px' });

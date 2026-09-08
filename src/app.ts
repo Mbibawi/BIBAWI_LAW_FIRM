@@ -240,7 +240,7 @@ function HomePage(router: Router): HTMLElement {
 
   //const hero = el('section', ['sec', 'hero'], '', { style: `background:linear-gradient(rgba(7, 52, 61, 0.55),rgba(8,23,38,.72)),url(${IMAGES}hero.png?auto=format&fit=crop&w=1800&q=80) center/cover no-repeat` });
   const hero = el('section', ['sec', 'hero'], '', {
-    style: `background-image: linear-gradient(rgba(7, 52, 61, 0.55), rgba(8, 23, 38, 0.72)), url('${IMAGES}hero.png')`
+    style: `background-image: linear-gradient(rgba(7, 52, 61, 0.55), rgba(8, 23, 38, 0.72)), url(${IMAGES}hero.png)`
   });
   const heroInner = el('div', 'w');
   const heroBox = el('div', '', '', { style: 'maxWidth:640px' });
