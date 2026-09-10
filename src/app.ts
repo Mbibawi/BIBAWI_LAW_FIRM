@@ -7,6 +7,7 @@
 
 
 /* --------------------------- Data --------------------------------- */
+import { posts, pages } from './posts.js';
 
 const PHONE = '+33 7 81 22 51 91';
 const EMAIL = 'mina.bibawi@bibawi-avocats.com';
@@ -16,7 +17,6 @@ const ASSETS = '/dist/assets/';
 export const IMAGES = `${ASSETS}images/`;
 const UPOLADS = `${ASSETS}uploads/`;
 
-import { posts, pages } from './posts.js';
 
 const EXPERTISES: Expertise[] = [
   {

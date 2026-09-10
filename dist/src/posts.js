@@ -1,4 +1,4 @@
-import { IMAGES } from './app.js';
+const IMAGES = '/dist/assets/images';
 export const posts = [
     {
         id: '1',

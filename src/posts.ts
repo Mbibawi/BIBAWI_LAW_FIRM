@@ -1,6 +1,7 @@
 /// reference types="types.d.ts"
 
-import { IMAGES } from './app.js';
+//import { IMAGES } from './app.js';
+const IMAGES = '/dist/assets/images';
 
 export const posts: Post[] = [
     {
