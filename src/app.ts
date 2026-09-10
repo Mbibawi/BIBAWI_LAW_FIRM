@@ -174,7 +174,11 @@ function Header(router: Router): HTMLElement {
 
   links.forEach(l => {
     const a = el('a', window.location.pathname === router.path(l.p) ? 'act' : '', l.t, { href: l.p });
-    a.addEventListener('click', e => { e.preventDefault(); router.navigate(l.p); });
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      router.navigate(l.p);
+      nav.classList.remove('act'); // close mobile menu after navigating
+    });
     nav.appendChild(a);
   });
 
@@ -236,7 +240,6 @@ function HomePage(router: Router): HTMLElement {
   const page = el('div');
 
   /* Hero */
-  //const hero = el('section', ['sec', 'hero'], '', { style: `background:linear-gradient(rgba(8,23,38,.55),rgba(8,23,38,.72)),url(${IMG}photo-1589578527966-fdac0f44566c?auto=format&fit=crop&w=1800&q=80) center/cover no-repeat` });
 
   //const hero = el('section', ['sec', 'hero'], '', { style: `background:linear-gradient(rgba(7, 52, 61, 0.55),rgba(8,23,38,.72)),url(${IMAGES}hero.png?auto=format&fit=crop&w=1800&q=80) center/cover no-repeat` });
   const hero = el('section', ['sec', 'hero'], '', {
@@ -293,7 +296,7 @@ function HomePage(router: Router): HTMLElement {
   const aboutTxt = el('div');
   aboutTxt.appendChild(el('p', 'sub', 'QUI SOMMES-NOUS'));
   aboutTxt.appendChild(el('h2', 'tit', '\u00c0 propos du cabinet'));
-  aboutTxt.appendChild(el('p', 'txt', 'Ma\u00eetre Mina BIBAWI est avocat au Barreau de Paris, sp\u00e9cialis\u00e9 en droit des affaires. Il conseille et repr\u00e9sente ses clients depuis plus de 15 ans en mati\u00e8re de baux commerciaux, location-g\u00e9rance et cessions de fonds de commerce, droit des soci\u00e9t\u00e9s, et contrats commerciaux et internationaux.'));
+  aboutTxt.appendChild(el('p', 'txt', 'Ma\u00eetre Mina BIBAWI est avocat au Barreau de Paris, sp\u00e9cialis\u00e9 en droit des affaires. Il conseille et repr\u00e9sente ses clients depuis 2014 en mati\u00e8re de baux commerciaux, location-g\u00e9rance et cessions de fonds de commerce, droit des soci\u00e9t\u00e9s, et contrats commerciaux et internationaux.'));
   aboutTxt.appendChild(el('p', 'txt', 'Titulaire d\u2019un Master II Professionnel en droit europ\u00e9en et international des affaires de l\u2019Universit\u00e9 Paris I Panth\u00e9on-Sorbonne, il conseille sa client\u00e8le en fran\u00e7ais, en anglais et en arabe.'));
   const aboutBtn = el('a', ['btn', 'btn-o'], 'En savoir plus', { href: '/about' });
   aboutBtn.addEventListener('click', e => { e.preventDefault(); router.navigate('about'); });
@@ -345,7 +348,7 @@ function AboutPage(): HTMLElement {
   const w2 = el('div', ['w', 'g'], '', { style: 'gridTemplateColumns:1fr 1fr;gap:3rem;alignItems:center' });
   const txt = el('div');
   txt.appendChild(el('h4', '', 'Un cabinet ind\u00e9pendant, \u00e0 taille humaine, au service des entrepreneurs et des dirigeants.', { style: 'fontSize:1.25rem;marginBottom:1rem' }));
-  txt.appendChild(el('p', 'txt', 'Ma\u00eetre Mina BIBAWI est avocat au Barreau de Paris depuis plus de 15 ans. Il exerce en droit des affaires, avec une expertise reconnue en baux commerciaux, location-g\u00e9rance et cessions de fonds de commerce, droit des soci\u00e9t\u00e9s, et contrats commerciaux et internationaux.'));
+  txt.appendChild(el('p', 'txt', 'Ma\u00eetre Mina BIBAWI est avocat au Barreau de Paris depuis bientôt 15 ans. Il exerce en droit des affaires, avec une expertise reconnue en baux commerciaux, location-g\u00e9rance et cessions de fonds de commerce, droit des soci\u00e9t\u00e9s, et contrats commerciaux et internationaux.'));
   txt.appendChild(el('p', 'txt', 'Titulaire d\u2019un Master II Professionnel en droit europ\u00e9en et international des affaires de l\u2019Universit\u00e9 Paris I Panth\u00e9on-Sorbonne, il a d\u00e9velopp\u00e9 tout au long de sa carri\u00e8re une pratique tourn\u00e9e vers les op\u00e9rations transfrontali\u00e8res, aux c\u00f4t\u00e9s de clients fran\u00e7ais et \u00e9trangers.'));
   txt.appendChild(el('p', 'txt', 'Il conseille et repr\u00e9sente ses clients en fran\u00e7ais, en anglais et en arabe, ce qui lui permet d\u2019accompagner des entrepreneurs et investisseurs issus d\u2019horizons vari\u00e9s, en France comme \u00e0 l\u2019international.'));
   txt.appendChild(el('p', 'txt', 'Son approche est celle d\u2019un conseil de proximit\u00e9 : comprendre les objectifs commerciaux du client, anticiper les risques juridiques et fiscaux, et structurer chaque op\u00e9ration avec rigueur, jusqu\u2019\u00e0 sa r\u00e9alisation.'));
@@ -540,5 +543,11 @@ function iconDocument(): SVGSVGElement {
   router.add(`contact`, () => ContactPage());
   router.add(`faq`, () => FAQPage());
 
+
+  const redirect = sessionStorage.redirect;
+  delete sessionStorage.redirect;
+  if (redirect) {
+    history.replaceState(null, '', redirect);
+  }
   router.render();
 })();
