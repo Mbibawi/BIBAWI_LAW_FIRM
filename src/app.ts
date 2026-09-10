@@ -380,7 +380,7 @@ function AboutPage(): HTMLElement {
 function ExpertisesPage(router: Router): HTMLElement {
   const page = el('div');
 
-  const hero = el('section', ['sec', 'hero', 'hero-flat'], '', { style: `background:linear-gradient(rgba(8,23,38,.6),rgba(8,23,38,.6)),url(${IMAGES}perso2_retouche.jpg?auto=format&fit=crop&w=1800&q=80) center/cover no-repeat;min-height:360px` });
+  const hero = el('section', ['sec', 'hero', 'hero-flat'], '', { style: `background:linear-gradient(rgba(8,23,38,.6),rgba(8,23,38,.6)),url(${IMAGES}hero.png?auto=format&fit=crop&w=1800&q=80) center/cover no-repeat;min-height:360px` });
   const heroInner = el('div', 'w');
   const heroBox = el('div', '', '', { style: 'max-width:720px' });
   heroBox.appendChild(el('p', 'sub', 'Expertises', { style: 'color:#fff' }));
