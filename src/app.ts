@@ -5,7 +5,6 @@
 /*  No frameworks. No libraries. All DOM created at runtime.           */
 /* ------------------------------------------------------------------ */
 
-import { posts, pages } from './posts.js';
 
 /* --------------------------- Data --------------------------------- */
 
@@ -17,6 +16,7 @@ const ASSETS = '/dist/assets/';
 export const IMAGES = `${ASSETS}images/`;
 const UPOLADS = `${ASSETS}uploads/`;
 
+import { posts, pages } from './posts.js';
 
 const EXPERTISES: Expertise[] = [
   {

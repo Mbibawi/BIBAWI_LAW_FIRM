@@ -1,4 +1,3 @@
-import { posts } from './posts.js';
 const PHONE = '+33 7 81 22 51 91';
 const EMAIL = 'mina.bibawi@bibawi-avocats.com';
 const ADDRESS = '54, rue Letort - 75018 Paris';
@@ -6,6 +5,7 @@ const IMG = 'https://images.unsplash.com/';
 const ASSETS = '/dist/assets/';
 export const IMAGES = `${ASSETS}images/`;
 const UPOLADS = `${ASSETS}uploads/`;
+import { posts } from './posts.js';
 const EXPERTISES = [
     {
         title: 'Baux commerciaux',
