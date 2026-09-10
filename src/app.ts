@@ -5,6 +5,7 @@
 /*  No frameworks. No libraries. All DOM created at runtime.           */
 /* ------------------------------------------------------------------ */
 
+import { posts, pages } from './posts.js';
 
 /* --------------------------- Data --------------------------------- */
 
@@ -13,7 +14,7 @@ const EMAIL = 'mina.bibawi@bibawi-avocats.com';
 const ADDRESS = '54, rue Letort - 75018 Paris';
 const IMG = 'https://images.unsplash.com/';
 const ASSETS = '/dist/assets/';
-const IMAGES = `${ASSETS}images/`;
+export const IMAGES = `${ASSETS}images/`;
 const UPOLADS = `${ASSETS}uploads/`;
 
 
@@ -168,6 +169,7 @@ function Header(router: Router): HTMLElement {
     { t: 'Accueil', p: '' },
     { t: 'Expertises', p: 'expertises' },
     { t: 'À propos', p: 'about' },
+    { t: 'Articles', p: 'articles' },
     { t: 'FAQ', p: 'faq' },
     { t: 'Contact', p: 'contact' }
   ];
@@ -335,6 +337,127 @@ function HomePage(router: Router): HTMLElement {
   page.append(hero, msg, feat, about, look, ctaSec);
   return page;
 }
+
+function resolveImage(img?: string): string {
+  if (!img) return '';
+  return /^https?:\/\//.test(img) ? img : `${UPOLADS}${img}`;
+}
+
+function formatDate(d: string): string {
+  try {
+    return new Date(d).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+  } catch {
+    return d;
+  }
+}
+
+function ArticlesPage(router: Router): HTMLElement {
+  const articles = posts
+    .filter(post => post.type === 'POST')
+    .slice()
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  const page = el('div');
+
+  const sec = el('section', 'sec');
+  const w = el('div', 'w');
+  w.appendChild(SectionTitle('Actualit\u00e9s', 'Articles du cabinet'));
+
+  const featuredWrap = el('div', '', '', { style: 'marginBottom:2.5rem' });
+  const carousel = el('div', 'cl', '', {
+    style: 'display:flex;gap:1.25rem;overflowX:auto;paddingBottom:1rem;scrollSnapType:x mandatory'
+  });
+
+  w.append(featuredWrap, carousel);
+  sec.appendChild(w);
+  page.appendChild(sec);
+
+  if (!articles.length) {
+    w.appendChild(el('p', 'txt', 'Aucun article \u00e0 afficher pour le moment.'));
+    return page;
+  }
+
+  let activeId = articles[0].id;
+
+  renderFeatured();
+  renderCarousel();
+
+  return page;
+
+  function selectArticle(id: string) {
+    if (activeId === id) return;
+    activeId = id;
+    renderFeatured();
+    renderCarousel();
+    featuredWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderFeatured() {
+    const article = articles.find(a => a.id === activeId)!;
+    featuredWrap.innerHTML = '';
+
+    const card = el('div', 'card', '', { style: 'overflow:hidden' });
+    card.setAttribute('dir', article.dir || 'ltr');
+
+    if (article.image) {
+      card.appendChild(el('img', '', '', {
+        src: resolveImage(article.image),
+        alt: article.title,
+        style: 'width:100%;maxHeight:420px;objectFit:cover;borderRadius:var(--ra);marginBottom:1.5rem'
+      }));
+    }
+
+    const body = el('div', '', '', { style: 'padding:0 .25rem' });
+    body.appendChild(el('p', 'sub', formatDate(article.date)));
+    body.appendChild(el('h2', 'tit', article.title, { style: 'marginBottom:1rem' }));
+
+    if (article.tags && article.tags.length) {
+      const tagRow = el('div', ['f', 'ai'], '', { style: 'gap:.5rem;flexWrap:wrap;marginBottom:1rem' });
+      article.tags.forEach(t => tagRow.appendChild(el('span', 'sub', t, {
+        style: 'background:var(--p);color:#fff;padding:.2rem .7rem;borderRadius:999px;fontSize:.75rem'
+      })));
+      body.appendChild(tagRow);
+    }
+
+    const content = el('div', 'txt', '', { style: 'whiteSpace:pre-wrap;lineHeight:1.7' });
+    content.textContent = article.content;
+    body.appendChild(content);
+
+    card.appendChild(body);
+    featuredWrap.appendChild(card);
+  }
+
+  function renderCarousel() {
+    carousel.innerHTML = '';
+    articles.forEach(article => carousel.appendChild(showArticleCard(article)));
+  }
+
+  function showArticleCard(article: Post): HTMLElement {
+    const isActive = article.id === activeId;
+    const card = el('div', ['card', isActive ? 'act' : ''].filter(Boolean), '', {
+      style: 'flex:0 0 260px;scrollSnapAlign:start;cursor:pointer;padding:0;overflow:hidden' +
+        (isActive ? ';borderColor:var(--p)' : '')
+    });
+
+    if (article.image) {
+      card.appendChild(el('img', '', '', {
+        src: resolveImage(article.image),
+        alt: article.title,
+        style: 'width:100%;height:150px;objectFit:cover'
+      }));
+    }
+
+    const body = el('div', '', '', { style: 'padding:1rem' });
+    body.appendChild(el('p', 'sub', formatDate(article.date)));
+    body.appendChild(el('h4', '', article.title, { style: 'fontSize:1rem;marginTop:.25rem' }));
+    card.appendChild(body);
+
+    card.addEventListener('click', () => selectArticle(article.id));
+
+    return card;
+  }
+}
+
 
 function AboutPage(): HTMLElement {
   const page = el('div');
@@ -525,6 +648,9 @@ function iconDocument(): SVGSVGElement {
   return iconPath('M0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V64H384v64z');
 }
 
+
+
+
 /* -------------------------- Init ---------------------------------- */
 
 (function start() {
@@ -540,6 +666,7 @@ function iconDocument(): SVGSVGElement {
   router.add('', () => HomePage(router));
   router.add(`expertises`, () => ExpertisesPage(router));
   router.add(`about`, () => AboutPage());
+  //router.add(`articles`, () => ArticlesPage(router));
   router.add(`contact`, () => ContactPage());
   router.add(`faq`, () => FAQPage());
 
