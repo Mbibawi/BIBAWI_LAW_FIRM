@@ -240,7 +240,7 @@ button:focus-visible,
 /* Hero */
 .hero {
   position: relative;
-  min-height: 70rem;
+  min-height: 60rem;
   display: flex;
   align-items: center;
   color: #fff
