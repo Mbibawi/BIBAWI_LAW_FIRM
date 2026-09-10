@@ -258,6 +258,10 @@ button:focus-visible,
   content: none
 }
 
+.hero.hero-flat {
+  min-height: 480px;
+}
+
 .hero>div {
   position: relative;
   z-index: 2
