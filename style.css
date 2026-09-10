@@ -240,7 +240,7 @@ button:focus-visible,
 /* Hero */
 .hero {
   position: relative;
-  min-height: 600px;
+  min-height: 800px;
   display: flex;
   align-items: center;
   color: #fff
@@ -256,10 +256,6 @@ button:focus-visible,
 
 .hero.hero-flat::before {
   content: none
-}
-
-.hero.hero-flat {
-  min-height: 480px;
 }
 
 .hero>div {
